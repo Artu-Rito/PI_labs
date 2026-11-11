@@ -1,0 +1,9 @@
+stateDiagram-v2
+    [*] --> New : клиент создал заказ
+    New --> InProgress : менеджер принял заказ в работу
+    InProgress --> Ready : заказ собран / изделие изготовлено
+    Ready --> Completed : заказ выдан клиенту
+    New --> Cancelled : клиент или менеджер отменил заказ
+    InProgress --> Cancelled : отмена до завершения
+    Completed --> [*]
+    Cancelled --> [*]

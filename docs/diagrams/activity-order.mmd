@@ -1,0 +1,15 @@
+flowchart TD
+    Start(["Начало"]) --> Browse["Клиент просматривает каталог"]
+    Browse --> Choose{"Готовая мебель\nили индивидуальная?"}
+    Choose -->|"готовая"| AddCart["Добавить товар в корзину"]
+    AddCart --> MoreItems{"Добавить ещё товары?"}
+    MoreItems -->|"да"| Browse
+    MoreItems -->|"нет"| PlaceOrder["Оформить заказ"]
+    Choose -->|"индивидуальная"| CreateRequest["Создать заявку\nс параметрами изделия"]
+    CreateRequest --> ManagerReview["Менеджер уточняет параметры\nи рассчитывает стоимость"]
+    ManagerReview --> ConvertOrder["Заявка переводится в заказ"]
+    PlaceOrder --> ManagerProcess["Менеджер обрабатывает заказ"]
+    ConvertOrder --> ManagerProcess
+    ManagerProcess --> UpdateStatus["Менеджер изменяет статус заказа"]
+    UpdateStatus --> Track["Клиент отслеживает статус заказа"]
+    Track --> End(["Конец"])

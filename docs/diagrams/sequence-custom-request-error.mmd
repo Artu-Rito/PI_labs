@@ -1,0 +1,9 @@
+sequenceDiagram
+    actor Client as Клиент
+    participant API as Backend API
+    participant DB as PostgreSQL
+
+    Client->>API: POST /custom-requests {"width_cm": "широкий", "height_cm": 80}
+    API->>API: валидация входных данных
+    API-->>Client: 400 Bad Request {"error": "width_cm должен быть числом"}
+    Note over DB: заявка не создаётся,\nзапрос к базе не выполняется
