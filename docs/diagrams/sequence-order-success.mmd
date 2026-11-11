@@ -1,0 +1,11 @@
+sequenceDiagram
+    actor Client as Клиент
+    participant API as Backend API
+    participant DB as PostgreSQL
+
+    Client->>API: POST /orders {"items": [{"product_id": 12, "qty": 1}]}
+    API->>DB: SELECT товар по product_id
+    DB-->>API: товар найден, в наличии
+    API->>DB: INSERT заказ (status = "new")
+    DB-->>API: заказ создан, order_id = 501
+    API-->>Client: 201 Created {"order_id": 501, "status": "new"}

@@ -1,0 +1,13 @@
+graph TB
+    Client["Клиент"]
+    Manager["Менеджер"]
+
+    subgraph System["Furniture Management System"]
+        FMS["Backend API"]
+    end
+
+    DB[("PostgreSQL\n(база данных)")]
+
+    Client -->|"просматривает каталог,\nоформляет заказы,\nсоздаёт заявки"| FMS
+    Manager -->|"обрабатывает заказы и заявки,\nизменяет статусы"| FMS
+    FMS -->|"читает/пишет данные\nо товарах, заказах, заявках"| DB

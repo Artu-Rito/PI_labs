@@ -1,0 +1,39 @@
+classDiagram
+    class User {
+        +int id
+        +string email
+        +string password_hash
+        +string role
+    }
+    class Product {
+        +int id
+        +string name
+        +decimal price
+        +int stock_qty
+    }
+    class Order {
+        +int id
+        +int client_id
+        +string status
+        +datetime created_at
+    }
+    class OrderItem {
+        +int id
+        +int order_id
+        +int product_id
+        +int qty
+    }
+    class CustomRequest {
+        +int id
+        +int client_id
+        +string description
+        +decimal width_cm
+        +decimal height_cm
+        +decimal estimated_price
+        +string status
+    }
+
+    User "1" --> "0..*" Order : оформляет
+    User "1" --> "0..*" CustomRequest : создаёт
+    Order "1" --> "1..*" OrderItem : содержит
+    OrderItem "0..*" --> "1" Product : ссылается на
